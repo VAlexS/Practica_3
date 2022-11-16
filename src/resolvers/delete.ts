@@ -14,13 +14,7 @@ export const deleteUser =async (context:DeleteUserContext) => {
     try{
         if (context.params?.id){
             const usuario_a_eliminar = await usersCollection.deleteOne({_id: new ObjectId(context.params.id),});
-            /*if (usuario_a_eliminar){
-                context.response.status = 200;
-            }
-            else {
-                context.response.status = 404;
-            }*/
-
+            
             usuario_a_eliminar? context.response.status = 200 : context.response.status = 404;
         }
 

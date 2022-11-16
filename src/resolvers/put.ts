@@ -5,7 +5,7 @@ import { usersCollection, booksCollection } from "../db/mongo.ts";
 type PutCartContext = RouterContext<
     "/updateCart",
     Record<string | number, string | undefined>,
-    Record<string, any>
+    Record<string, any> 
 >;
 
 
@@ -42,9 +42,7 @@ export const putUpdateCart =async (context:PutCartContext) => {
             return;
         }
 
-        //aqui esta el error
         const cart = user.cart;
-        console.log(cart.length);
         cart.push(book._id.toString());
 
         const usuario_con_carro_act = await usersCollection.updateOne({_id: new ObjectId(value.id_user)}, {$set : {cart: cart}});

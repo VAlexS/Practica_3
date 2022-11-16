@@ -8,12 +8,12 @@ import { putUpdateCart } from "./resolvers/put.ts";
 const router = new Router();
 
 router
-    .get("/getBooks", getBooks)
-    .get("/getUser/:id", getUser) //ok
-    .post("/addUser", postAddUser) //ok
-    .post("/addAuthor", postAddAuthor) //ok
-    .post("/addBook", postAddBook) //ok
-    .delete("/deleteUser/:id", deleteUser) //ok
+    .get("/getBooks", getBooks) 
+    .get("/getUser/:id", getUser) 
+    .post("/addUser", postAddUser)
+    .post("/addAuthor", postAddAuthor) 
+    .post("/addBook", postAddBook) 
+    .delete("/deleteUser/:id", deleteUser) 
     .put("/updateCart", putUpdateCart)
 
 

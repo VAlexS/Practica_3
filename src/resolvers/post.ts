@@ -4,6 +4,7 @@ import { User, Book, Author } from "../types.ts";
 import { usersCollection, booksCollection, authorsCollection } from "../db/mongo.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt@v0.3.0/mod.ts";
 import { uuid } from "https://deno.land/x/uuid/mod.ts";
+import { email, REGEX } from "https://deno.land/x/validation/mod.ts";
 
 type PostAddUserContext = RouterContext<
     "/addUser",
@@ -35,6 +36,10 @@ export const postAddUser = async (context:PostAddUserContext) => {
 
         const passwordHash = await bcrypt.hash(value?.password);
 
+        
+
+        if (email.valid(value?.email)){
+
         const nuevoUsuario : Partial<User> = {
             name: value.name,
             password: passwordHash,
@@ -57,6 +62,11 @@ export const postAddUser = async (context:PostAddUserContext) => {
             cart: [],
         }
         context.response.status = 200;
+    }
+    else {
+        context.response.status = 406;
+        context.response.body = {mensaje: "Direccion correo electronico no valido"};
+    }
      
 
     } catch (e) {
@@ -140,4 +150,7 @@ export const postAddBook =async (context:PostAddBookContext) => {
       }
     
 }
+
+
+
 
